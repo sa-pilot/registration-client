@@ -80,11 +80,13 @@ public class GenericController<uiFieldDTO> extends BaseController {
 	private static final String CONTROLTYPE_BIOMETRICS = "biometrics";
 	private static final String CONTROLTYPE_DOCUMENTS = "fileupload";
 	private static final String CONTROLTYPE_DROPDOWN = "dropdown";
+	private static final String CONTROLTYPE_COUNTRY_DROPDOWN="countryDropdown";
 	private static final String CONTROLTYPE_CHECKBOX = "checkbox";
 	private static final String CONTROLTYPE_BUTTON = "button";
 	private static final String CONTROLTYPE_DOB = "date";
 	private static final String CONTROLTYPE_DOB_AGE = "ageDate";
 	private static final String CONTROLTYPE_HTML = "html";
+
 
 	/**
 	 * Top most Grid pane in FXML
@@ -1067,6 +1069,9 @@ public class GenericController<uiFieldDTO> extends BaseController {
 
 				case CONTROLTYPE_DROPDOWN:
 					fxControl = new DropDownFxControl().build(uiFieldDTO);
+					break;
+				case CONTROLTYPE_COUNTRY_DROPDOWN:
+					fxControl = new CountryDropdownFxControl().build(uiFieldDTO);
 					break;
 				case CONTROLTYPE_HTML:
 					fxControl = new HtmlFxControl().build(uiFieldDTO);
