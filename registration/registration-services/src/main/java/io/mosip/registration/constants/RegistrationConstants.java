@@ -279,6 +279,9 @@ public class RegistrationConstants {
 	public static final String TEXTBOX = "textbox";
 	public static final String BUTTON = "button";
 	public static final String RESIDENCE_STATUS = "residenceStatus";
+	public static final String NATIONALITY = "nationality";
+	public static final String HASH_NATIONALITY = "#nationality";
+	public static final String HASH_NATIONALITY_MSG = "#nationalityMessage";
 	public static final String PRIMARY = "primary";
 	public static final String SECONDARY = "secondary";
 	public static final String DemoGraphicFieldMessageLabel = "demoGraphicFieldMessageLabel";
@@ -2009,4 +2012,6 @@ public class RegistrationConstants {
 	public static final String DOCUMENT_STORE="docs";
 	// File extension for scanned image files
 	public static final String DOCUMENT_IMAGE_EXTENSION = ".png";
+	public static final String ATTR_SOUTH_AFRICAN_CODE = "ZA";
+
 }
