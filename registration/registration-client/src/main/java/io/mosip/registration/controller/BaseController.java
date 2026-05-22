@@ -634,7 +634,7 @@ public class BaseController {
 	/**
 	 * Opens the home page screen.
 	 */
-	public void goToSettingsFromRegistration() {
+	public boolean goToSettingsFromRegistration() {
 		try {
 			if (isAckOpened() || pageNavigantionAlert()) {
 				setIsAckOpened(false);
@@ -646,12 +646,15 @@ public class BaseController {
 					SessionContext.map().put(RegistrationConstants.ISPAGE_NAVIGATION_ALERT_REQ,
 							RegistrationConstants.ENABLE);
 				}
+				return true;
 			}
+			return false;
 
 		} catch (RuntimeException runtimException) {
 			LOGGER.error("REGISTRATION - REDIRECTHOME - BASE_CONTROLLER", APPLICATION_NAME, APPLICATION_ID,
 					runtimException.getMessage() + ExceptionUtils.getStackTrace(runtimException));
 			generateAlert(RegistrationConstants.ERROR, RegistrationUIConstants.getMessageLanguageSpecific(RegistrationUIConstants.UNABLE_LOAD_HOME_PAGE));
+			return false;
 		}
 	}
 
