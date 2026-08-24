@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-	<property name="LOG_PATTERN" value="%d %-5level [%thread] %logger{80} : %msg%n" />
+	<property name="LOG_PATTERN" value="%d %p [%t] %c{5} : %m%n" />
 	<property name="APP_LOG_ROOT" value="logs"/>
 
 	<appender name="applicationLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -19,21 +19,6 @@
 		</triggeringPolicy>
 	</appender>
 
-	<appender name="neurotechLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${APP_LOG_ROOT}/neurotech.log</file>
-		<encoder>
-			<pattern>${LOG_PATTERN}</pattern>
-		</encoder>
-		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-			<fileNamePattern>${APP_LOG_ROOT}/neurotech-%i.log</fileNamePattern>
-			<minIndex>1</minIndex>
-			<maxIndex>20</maxIndex>
-		</rollingPolicy>
-		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-			<maxFileSize>25MB</maxFileSize>
-		</triggeringPolicy>
-	</appender>
-
 	<appender name="metrics" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${APP_LOG_ROOT}/metrics.log</file>
 		<encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
@@ -46,25 +31,12 @@
 		<appender-ref ref="applicationLog" />
 	</logger>
 
-	<logger name="io.mosip.kernel.biosdk" level="TRACE" additivity="false">
-		<appender-ref ref="applicationLog" />
-		<appender-ref ref="neurotechLog" />
-	</logger>
-
-	<logger name="io.mosip.kernel.biometrics" level="TRACE" additivity="false">
-		<appender-ref ref="neurotechLog" />
-	</logger>
-
-	<logger name="com.neurotec" level="TRACE" additivity="false">
-		<appender-ref ref="neurotechLog" />
-	</logger>
-
-	<logger name="com.neurotec.mosip" level="TRACE" additivity="false">
-		<appender-ref ref="neurotechLog" />
-	</logger>
-
 	<logger name="io.mosip.registration.config.LoggingJsonMeterRegistry" level="INFO" additivity="false">
 		<appender-ref ref="metrics" />
+	</logger>
+
+	<logger name="com.neurotec" level="INFO" additivity="false">
+		<appender-ref ref="applicationLog" />
 	</logger>
 
 </configuration>
